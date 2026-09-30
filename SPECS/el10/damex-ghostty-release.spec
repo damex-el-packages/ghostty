@@ -1,0 +1,1 @@
+../damex-ghostty-release.spec
