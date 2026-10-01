@@ -1,0 +1,1 @@
+../ghostty-tip.spec
