@@ -1,6 +1,7 @@
 %define debug_package %{nil}
 %undefine source_date_epoch_from_changelog
 %global build_date %(date -u +%%Y%%m%%d)
+%global _zig_release_mode fast
 
 Name: ghostty-tip
 Version: %{build_date}
@@ -14,6 +15,7 @@ BuildRequires: blueprint-compiler
 BuildRequires: gettext
 BuildRequires: pandoc
 BuildRequires: zig
+BuildRequires: zig-rpm-macros
 BuildRequires: pkgconfig(egl)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtk4-layer-shell-0)
@@ -29,13 +31,15 @@ Ghostty terminal emulator built from upstream tip.
 %prep
 %setup -q -c -T
 %{__tar} --extract --file %{SOURCE0} --strip-components=1
+%zig_prep
+%{__zig} build --fetch=all --global-cache-dir %{_zig_cache_dir}
 
 %build
 
 %install
-DESTDIR=%{buildroot} zig build --prefix %{_prefix} --global-cache-dir %{_builddir}/zig-global-cache -Doptimize=ReleaseFast -Dcpu=baseline -Dpie=true
+%zig_install
 %{__rm} -r %{buildroot}%{_includedir}/ghostty
-%{__rm} %{buildroot}%{_prefix}/lib/libghostty-vt.a %{buildroot}%{_prefix}/lib/libghostty-vt.so %{buildroot}%{_prefix}/lib/libghostty-vt.so.0 %{buildroot}%{_prefix}/lib/libghostty-vt.so.0.1.0
+%{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
 %{__rm} %{buildroot}%{_datadir}/pkgconfig/libghostty-vt.pc %{buildroot}%{_datadir}/pkgconfig/libghostty-vt-static.pc
 %find_lang com.mitchellh.ghostty
 
