@@ -65,7 +65,6 @@ Ghostty terminal emulator built from upstream tip.
 %dir %{_datadir}/nvim/site/ftdetect
 %dir %{_datadir}/nvim/site/ftplugin
 %dir %{_datadir}/nvim/site/syntax
-%dir %{_datadir}/systemd/user
 %dir %{_datadir}/vim/vimfiles/compiler
 %dir %{_datadir}/vim/vimfiles/ftdetect
 %dir %{_datadir}/vim/vimfiles/ftplugin
@@ -94,7 +93,7 @@ Ghostty terminal emulator built from upstream tip.
 %{_datadir}/nvim/site/ftdetect/ghostty.vim
 %{_datadir}/nvim/site/ftplugin/ghostty.vim
 %{_datadir}/nvim/site/syntax/ghostty.vim
-%{_datadir}/systemd/user/app-com.mitchellh.ghostty.service
+%{_userunitdir}/app-com.mitchellh.ghostty.service
 %{_datadir}/terminfo/g/ghostty
 %{_datadir}/terminfo/x/xterm-ghostty
 %{_datadir}/vim/vimfiles/compiler/ghostty.vim
