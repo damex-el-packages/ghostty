@@ -15,9 +15,9 @@ jobs:
       gpg_public_key: ghostty-2036-09-27.asc
       gpg_public_keyring: ghostty-2036-09-27.gpg
       build_with_published_repository: true
-      distributions: |
+      targets: |
         [
-          {"codename": "el10", "docker_image_name": "ghcr.io/almalinux/10-base", "docker_image_tag": "10"}
+          {"codename": "el10", "docker_image_name": "ghcr.io/almalinux/10-base", "docker_image_tag": "10", "runner_image": "ubuntu-24.04", "architecture": "x86_64"}
         ]
       publish: ${{ github.ref == 'refs/heads/production' }}
     secrets: inherit
