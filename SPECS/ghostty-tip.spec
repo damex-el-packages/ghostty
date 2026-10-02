@@ -18,11 +18,17 @@ BuildRequires: pandoc
 BuildRequires: zig
 BuildRequires: zig-rpm-macros
 BuildRequires: pkgconfig(egl)
+BuildRequires: pkgconfig(fontconfig)
+BuildRequires: pkgconfig(freetype2)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtk4-layer-shell-0)
+BuildRequires: pkgconfig(harfbuzz)
 BuildRequires: pkgconfig(libadwaita-1)
+BuildRequires: pkgconfig(libpng)
+BuildRequires: pkgconfig(oniguruma)
 BuildRequires: pkgconfig(wayland-client)
 BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(zlib)
 Provides: ghostty = %{version}-%{release}
 Conflicts: ghostty
 
