@@ -43,7 +43,7 @@ Ghostty terminal emulator built from upstream tip.
 %build
 
 %install
-%zig_install -fno-sys=harfbuzz
+%zig_install -fno-sys=harfbuzz -Dversion-string="$(%{__cat} VERSION)"
 %{__rm} -r %{buildroot}%{_includedir}/ghostty
 %{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
 %{__rm} %{buildroot}%{_datadir}/pkgconfig/libghostty-vt.pc %{buildroot}%{_datadir}/pkgconfig/libghostty-vt-static.pc
