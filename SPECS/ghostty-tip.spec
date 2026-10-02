@@ -22,7 +22,6 @@ BuildRequires: pkgconfig(fontconfig)
 BuildRequires: pkgconfig(freetype2)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gtk4-layer-shell-0)
-BuildRequires: pkgconfig(harfbuzz)
 BuildRequires: pkgconfig(libadwaita-1)
 BuildRequires: pkgconfig(libpng)
 BuildRequires: pkgconfig(oniguruma)
@@ -44,7 +43,7 @@ Ghostty terminal emulator built from upstream tip.
 %build
 
 %install
-%zig_install
+%zig_install -fno-sys=harfbuzz
 %{__rm} -r %{buildroot}%{_includedir}/ghostty
 %{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
 %{__rm} %{buildroot}%{_datadir}/pkgconfig/libghostty-vt.pc %{buildroot}%{_datadir}/pkgconfig/libghostty-vt-static.pc
