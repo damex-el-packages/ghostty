@@ -9,6 +9,7 @@ Summary: Fast, feature-rich and cross-platform terminal emulator built from upst
 License: MIT
 URL: https://ghostty.org
 Source0: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz
+ExclusiveArch: x86_64
 BuildRequires: blueprint-compiler
 BuildRequires: gettext
 BuildRequires: pandoc
