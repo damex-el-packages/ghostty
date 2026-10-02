@@ -2,6 +2,7 @@
 %undefine source_date_epoch_from_changelog
 %global build_date %(date -u +%%Y%%m%%d)
 %global _zig_release_mode fast
+%global _zig_system_integration --system "${PWD}/zig-pkg"
 
 Name: ghostty-tip
 Version: %{build_date}
