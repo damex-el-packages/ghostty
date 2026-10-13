@@ -1,6 +1,4 @@
 %define debug_package %{nil}
-%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
-%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 %undefine source_date_epoch_from_changelog
 
 Name: damex-ghostty-release
@@ -9,6 +7,7 @@ Release: 2%{?dist}
 Summary: damex ghostty repository configuration
 License: MIT
 URL: https://yum-repositories.damex.org
+BuildArch: noarch
 
 %description
 
@@ -18,10 +17,10 @@ URL: https://yum-repositories.damex.org
 
 %install
 %{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
-%{__cat} <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-ghostty.repo
+%{__cat} <<'EOF' > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-ghostty.repo
 [damex-ghostty]
 name = damex-ghostty
-baseurl = https://yum-repositories.damex.org/ghostty/%{disttype}/%{distnum}/%{_arch}
+baseurl = https://yum-repositories.damex.org/ghostty/el/$releasever/$basearch
 gpgcheck = 1
 repo_gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/ghostty/ghostty-2036-09-27.asc
