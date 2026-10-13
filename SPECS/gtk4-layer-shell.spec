@@ -54,3 +54,7 @@ Development files for gtk4-layer-shell.
 %{_libdir}/lib%{name}.so
 %{_libdir}/liblayer-shell-preload.so
 %{_libdir}/pkgconfig/gtk4-layer-shell-0.pc
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/ghostty/commits/production

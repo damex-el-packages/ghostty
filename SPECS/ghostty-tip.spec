@@ -112,3 +112,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/com.mitch
 %{_datadir}/zsh/site-functions/_ghostty
 %{_mandir}/man1/ghostty.1.gz
 %{_mandir}/man5/ghostty.5.gz
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/ghostty/commits/production
