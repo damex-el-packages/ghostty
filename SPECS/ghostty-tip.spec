@@ -36,7 +36,10 @@ Provides: ghostty = %{version}-%{release}
 Conflicts: ghostty
 
 %description
-Ghostty terminal emulator built from upstream tip.
+Ghostty is a terminal emulator that differentiates itself by being fast,
+feature-rich, and native. While there are many excellent terminal
+emulators available, they all force you to choose between speed,
+features, or native UIs. Ghostty provides all three.
 
 %prep
 minisign -V -P %{minisign_public_key} -m %{SOURCE0} -x %{SOURCE1}
