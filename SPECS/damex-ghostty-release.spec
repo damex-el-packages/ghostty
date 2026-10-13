@@ -5,7 +5,7 @@
 
 Name: damex-ghostty-release
 Version: 0.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: damex ghostty repository configuration
 License: MIT
 URL: https://yum-repositories.damex.org
@@ -18,7 +18,7 @@ URL: https://yum-repositories.damex.org
 
 %install
 %{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
-cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-ghostty.repo
+%{__cat} <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-ghostty.repo
 [damex-ghostty]
 name = damex-ghostty
 baseurl = https://yum-repositories.damex.org/ghostty/%{disttype}/%{distnum}/%{_arch}
