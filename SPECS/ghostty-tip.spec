@@ -15,6 +15,7 @@ Source1: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-so
 ExclusiveArch: x86_64
 BuildRequires: blueprint-compiler
 BuildRequires: desktop-file-utils
+BuildRequires: fdupes
 BuildRequires: gettext
 BuildRequires: libappstream-glib
 BuildRequires: minisign
@@ -55,6 +56,7 @@ minisign -V -P %{minisign_public_key} -m %{SOURCE0} -x %{SOURCE1}
 %{__rm} -r %{buildroot}%{_includedir}/ghostty
 %{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
 %{__rm} %{buildroot}%{_datadir}/pkgconfig/libghostty-vt.pc %{buildroot}%{_datadir}/pkgconfig/libghostty-vt-static.pc
+%fdupes %{buildroot}%{_datadir}
 %find_lang com.mitchellh.ghostty
 
 %check
