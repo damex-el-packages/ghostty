@@ -37,7 +37,7 @@ Ghostty terminal emulator built from upstream tip.
 %setup -q -c -T
 %{__tar} --extract --file %{SOURCE0} --strip-components=1
 %zig_prep
-%{__zig} build --fetch=all --global-cache-dir %{_zig_cache_dir}
+%{__zig} build --fetch=all %{_zig_fetch_options}
 
 %build
 
