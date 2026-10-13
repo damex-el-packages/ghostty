@@ -1,4 +1,3 @@
-%undefine source_date_epoch_from_changelog
 %global build_date %(date -u +%%Y%%m%%d)
 %global minisign_public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global _zig_release_mode fast

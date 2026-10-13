@@ -1,5 +1,3 @@
-%undefine source_date_epoch_from_changelog
-
 Name: gtk4-layer-shell
 Version: 1.3.0
 Release: 1%{?dist}
