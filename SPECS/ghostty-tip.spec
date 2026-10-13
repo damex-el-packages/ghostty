@@ -14,7 +14,9 @@ Source0: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-so
 Source1: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
 ExclusiveArch: x86_64
 BuildRequires: blueprint-compiler
+BuildRequires: desktop-file-utils
 BuildRequires: gettext
+BuildRequires: libappstream-glib
 BuildRequires: minisign
 BuildRequires: pandoc
 BuildRequires: zig
@@ -51,6 +53,10 @@ minisign -V -P %{minisign_public_key} -m %{SOURCE0} -x %{SOURCE1}
 %{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
 %{__rm} %{buildroot}%{_datadir}/pkgconfig/libghostty-vt.pc %{buildroot}%{_datadir}/pkgconfig/libghostty-vt-static.pc
 %find_lang com.mitchellh.ghostty
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/com.mitchellh.ghostty.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/com.mitchellh.ghostty.metainfo.xml
 
 %files -f com.mitchellh.ghostty.lang
 %license LICENSE
