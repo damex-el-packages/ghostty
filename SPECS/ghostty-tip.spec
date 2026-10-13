@@ -1,5 +1,6 @@
 %undefine source_date_epoch_from_changelog
 %global build_date %(date -u +%%Y%%m%%d)
+%global minisign_public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global _zig_release_mode fast
 %global _zig_system_integration --system "${PWD}/zig-pkg"
 
@@ -10,9 +11,11 @@ Summary: Fast, feature-rich and cross-platform terminal emulator built from upst
 License: MIT
 URL: https://ghostty.org
 Source0: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz
+Source1: https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz.minisig
 ExclusiveArch: x86_64
 BuildRequires: blueprint-compiler
 BuildRequires: gettext
+BuildRequires: minisign
 BuildRequires: pandoc
 BuildRequires: zig
 BuildRequires: zig-rpm-macros
@@ -34,6 +37,7 @@ Conflicts: ghostty
 Ghostty terminal emulator built from upstream tip.
 
 %prep
+minisign -V -P %{minisign_public_key} -m %{SOURCE0} -x %{SOURCE1}
 %setup -q -c -T
 %{__tar} --extract --file %{SOURCE0} --strip-components=1
 %zig_prep
