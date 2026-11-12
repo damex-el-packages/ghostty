@@ -1,4 +1,7 @@
 %global minisign_public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
+%global zig_version 0.17.1
+%global zig_minisign_public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
+%global __zig ${PWD}/zig-x86_64-linux-%{zig_version}/zig
 %global _zig_release_mode fast
 %global _zig_system_integration --system "${PWD}/zig-pkg"
 
@@ -10,6 +13,8 @@ License: MIT
 URL: https://ghostty.org
 Source0: https://release.files.ghostty.org/%{version}/%{name}-%{version}.tar.gz
 Source1: https://release.files.ghostty.org/%{version}/%{name}-%{version}.tar.gz.minisig
+Source2: https://ziglang.org/download/%{zig_version}/zig-x86_64-linux-%{zig_version}.tar.xz
+Source3: https://ziglang.org/download/%{zig_version}/zig-x86_64-linux-%{zig_version}.tar.xz.minisig
 ExclusiveArch: x86_64
 BuildRequires: blueprint-compiler
 BuildRequires: desktop-file-utils
@@ -18,7 +23,6 @@ BuildRequires: gettext
 BuildRequires: libappstream-glib
 BuildRequires: minisign
 BuildRequires: pandoc
-BuildRequires: zig >= 0.17.0
 BuildRequires: zig-rpm-macros
 BuildRequires: pkgconfig(egl)
 BuildRequires: pkgconfig(fontconfig)
@@ -40,7 +44,10 @@ features, or native UIs. Ghostty provides all three.
 
 %prep
 minisign -V -P %{minisign_public_key} -m %{SOURCE0} -x %{SOURCE1}
-%autosetup
+minisign -V -P %{zig_minisign_public_key} -m %{SOURCE2} -x %{SOURCE3}
+%autosetup -a 2
+%{__sed} --in-place 's/\.minor = 18,/.minor = 16,/' src/apprt/gtk/gtk_version.zig
+%{__sed} --in-place 's/\.minor = 7,/.minor = 6,/' src/apprt/gtk/adw_version.zig src/apprt/gtk/build/gresource.zig
 %zig_prep
 %{__zig} build --fetch=all %{_zig_fetch_options}
 
