@@ -18,7 +18,7 @@ BuildRequires: gettext
 BuildRequires: libappstream-glib
 BuildRequires: minisign
 BuildRequires: pandoc
-BuildRequires: zig >= 0.17.0
+BuildRequires: zig >= 0.16.0
 BuildRequires: zig-rpm-macros
 BuildRequires: pkgconfig(egl)
 BuildRequires: pkgconfig(fontconfig)
