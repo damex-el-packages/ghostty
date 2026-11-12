@@ -4,6 +4,7 @@
 %global __zig ${PWD}/zig-x86_64-linux-%{zig_version}/zig
 %global _zig_release_mode fast
 %global _zig_system_integration --system "${PWD}/zig-pkg"
+%global _zig_advanced_options -fallow-so-scripts --cache-dir "%{_zig_cache_dir}"
 
 Name: ghostty
 Version: 1.4.0
@@ -49,11 +50,13 @@ minisign -V -P %{zig_minisign_public_key} -m %{SOURCE2} -x %{SOURCE3}
 %{__sed} --in-place 's/\.minor = 18,/.minor = 16,/' src/apprt/gtk/gtk_version.zig
 %{__sed} --in-place 's/\.minor = 7,/.minor = 6,/' src/apprt/gtk/adw_version.zig src/apprt/gtk/build/gresource.zig
 %zig_prep
-%{__zig} build --fetch=all %{_zig_fetch_options}
+export ZIG_GLOBAL_CACHE_DIR=%{_zig_cache_dir}
+%{__zig} build --fetch=all
 
 %build
 
 %install
+export ZIG_GLOBAL_CACHE_DIR=%{_zig_cache_dir}
 %zig_install -fno-sys=harfbuzz -Dstrip=false -Dversion-string=%{version}
 %{__rm} -r %{buildroot}%{_includedir}/ghostty
 %{__rm} %{buildroot}%{_libdir}/libghostty-vt.a %{buildroot}%{_libdir}/libghostty-vt.so %{buildroot}%{_libdir}/libghostty-vt.so.0 %{buildroot}%{_libdir}/libghostty-vt.so.0.1.0
